@@ -3,3 +3,5 @@
 1) SlotMachine -> It is just a JavaScript game that displays a slot machine and users can place the amount and number of lines they want to bet on.
 
 2) WebScraper -> This is a tool that scrapes job sites for job depending on certain skills. Uses BeautifuSoup and request library.
+
+3) react-proj -> simple movie app
