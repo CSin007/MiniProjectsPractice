@@ -1,0 +1,37 @@
+import requests
+from bs4 import BeautifulSoup
+
+# Example URL of the job posting
+url = "https://example.com/job-posting"
+
+# Send a request to fetch the page content
+response = requests.get(url)
+
+# Parse the page content with BeautifulSoup
+soup = BeautifulSoup(response.content, 'html.parser')
+
+# Extract job description from a specific tag (assuming it's in a <div> with class 'job-description')
+job_description = soup.find('div', class_='job-description').get_text(separator='\n')
+
+# Phrases to check for
+phrases = [
+    "does not sponsor international students",
+    "U.S. citizenship required",
+    "must be a U.S. citizen",
+    "requires security clearance",
+    "needs clearance"
+]
+
+# Check for phrases in job description
+found_phrases = []
+for phrase in phrases:
+    if phrase.lower() in job_description.lower():
+        found_phrases.append(phrase)
+
+# Report found phrases
+if found_phrases:
+    print("The following restrictions were found in the job description:")
+    for found in found_phrases:
+        print(f"- {found}")
+else:
+    print("No restrictions found related to international students, citizenship, or clearance.")
